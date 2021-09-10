@@ -23,5 +23,26 @@
         }
       ]
     }
-  }
+  },
+  "GET /api/articles/by/:username": {
+    "description": "serves an array of all articles by a given user",
+    "queries": [
+      "topic",
+      "sort_by",
+      "order",
+      "limit",
+      "p"
+    ],
+    "exampleResponse": {
+      "articles": [
+        {
+          "title": "Seafood substitutions are increasing",
+          "topic": "cooking",
+          "author": "weegembump",
+          "body": "Text from the article..",
+          "created_at": 1527695953341
+        }
+      ]
+    }
+  },
 }
