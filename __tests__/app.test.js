@@ -52,14 +52,14 @@ describe('/api/topics', () => {
       return request(app)
         .post('/api/topics')
         .send(  {
-          slug: 'cooking',
+          slug: 'gaming',
           description:
-            'Strategy-focused board games that prioritise limited-randomness'
+            'Get together and play!'
         })
         .expect(201)
         .then(({ body: { topic } }) => {
-          expect(topic.slug).toBe('cooking');
-          expect(topic.description).toBe('Strategy-focused board games that prioritise limited-randomness');
+          expect(topic.slug).toBe('gaming');
+          expect(topic.description).toBe('Get together and play!');
         });
     });
   });
@@ -77,12 +77,12 @@ describe('/api/articles', () => {
           expect(articles.length).toBe(10);
           articles.forEach((article) => {
             expect(article).toHaveProperty('article_id');
-            expect(article).toHaveProperty('title');
-            expect(article).toHaveProperty('body');
-            expect(article).toHaveProperty('votes');
-            expect(article).toHaveProperty('topic');
-            expect(article).toHaveProperty('author');
-            expect(article).toHaveProperty('created_at');
+            expect(article.title).toEqual(expect.any(String));
+            expect(article.body).toEqual(expect.any(String));
+            expect(article.votes).toEqual(expect.any(Number));
+            expect(article.topic).toEqual(expect.any(String));
+            expect(article.author).toEqual(expect.any(String));
+            expect(article.created_at).toEqual(expect.any(String));
           });
           expect(articles).toBeSortedBy('created_at', {
             descending: true,
