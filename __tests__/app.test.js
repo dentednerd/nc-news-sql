@@ -334,12 +334,12 @@ describe('/api/articles/:article_id/comments', () => {
         .then(({ body: { comments }}) => {
           expect(comments.length).toBeGreaterThan(0);
           comments.forEach((comment) => {
-            expect(comment).toHaveProperty('comment_id');
-            expect(comment).toHaveProperty('author');
-            expect(comment).toHaveProperty('article_id');
-            expect(comment).toHaveProperty('votes');
-            expect(comment).toHaveProperty('created_at');
-            expect(comment).toHaveProperty('body');
+            expect(comment.comment_id).toEqual(expect.any(Number));
+            expect(comment.author).toEqual(expect.any(String));
+            expect(comment.article_id).toEqual(expect.any(Number));
+            expect(comment.votes).toEqual(expect.any(Number));
+            expect(comment.created_at).toEqual(expect.any(String));
+            expect(comment.body).toEqual(expect.any(String));
           });
         });
     });
@@ -405,7 +405,12 @@ describe('/api/articles/:article_id/comments', () => {
         })
         .expect(201)
         .then(({ body: { comment }}) => {
-          expect(comment).toHaveProperty('body');
+          expect(comment.comment_id).toEqual(expect.any(Number));
+          expect(comment.author).toBe('butter_bridge');
+          expect(comment.article_id).toBe(2);
+          expect(comment.votes).toBe(0);
+          expect(comment.created_at).toEqual(expect.any(String));
+          expect(comment.body).toBe('Testing APIs can be very...testing.');
         });
     });
 
@@ -421,7 +426,12 @@ describe('/api/articles/:article_id/comments', () => {
         })
         .expect(201)
         .then(({ body: { comment }}) => {
-          expect(comment).toHaveProperty('body');
+          expect(comment.comment_id).toEqual(expect.any(Number));
+          expect(comment.author).toBe('butter_bridge');
+          expect(comment.article_id).toBe(2);
+          expect(comment.votes).toBe(0);
+          expect(comment.created_at).toEqual(expect.any(String));
+          expect(comment.body).toBe('Testing APIs can be very...testing.');
         });
     });
 
