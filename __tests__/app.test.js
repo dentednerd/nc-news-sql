@@ -76,7 +76,7 @@ describe('/api/articles', () => {
         .then(({ body: { articles }}) => {
           expect(articles.length).toBe(10);
           articles.forEach((article) => {
-            expect(article).toHaveProperty('article_id');
+            expect(article.article_id).toEqual(expect.any(Number));
             expect(article.title).toEqual(expect.any(String));
             expect(article.body).toEqual(expect.any(String));
             expect(article.votes).toEqual(expect.any(Number));
@@ -235,13 +235,13 @@ describe('/api/articles/:article_id', () => {
         .get('/api/articles/1')
         .expect(200)
         .then(({ body: { article }}) => {
-          expect(article).toHaveProperty('article_id');
-          expect(article).toHaveProperty('title');
-          expect(article).toHaveProperty('body');
-          expect(article).toHaveProperty('votes');
-          expect(article).toHaveProperty('topic');
-          expect(article).toHaveProperty('author');
-          expect(article).toHaveProperty('created_at');
+          expect(article.article_id).toEqual(expect.any(Number));
+          expect(article.title).toEqual(expect.any(String));
+          expect(article.body).toEqual(expect.any(String));
+          expect(article.votes).toEqual(expect.any(Number));
+          expect(article.topic).toEqual(expect.any(String));
+          expect(article.author).toEqual(expect.any(String));
+          expect(article.created_at).toEqual(expect.any(String));
         });
     });
 
