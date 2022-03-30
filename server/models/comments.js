@@ -13,8 +13,8 @@ const fetchCommentsByUser = async (username) => {
 
   if (!comments || !comments.length) {
     return Promise.reject({
-      status: 405,
-      msg: `Comments not found`,
+      status: 404,
+      msg: `User comments not found`,
     });
   }
 
@@ -22,6 +22,13 @@ const fetchCommentsByUser = async (username) => {
 }
 
 const postCommentToArticle = async (article_id, { body, username }) => {
+  if (!body || !username) {
+    return Promise.reject({
+      status: 400,
+      msg: `Invalid comment`,
+    });
+  }
+
   const queryStr = `
     INSERT INTO comments
     (article_id, author, body)

@@ -162,23 +162,23 @@ describe('/api/articles', () => {
         });
     });
 
-    // it('200: returns an empty array when provided a valid topic with no articles', () => {
-    //   return request(app)
-    //     .get("/api/articles?topic=mitch")
-    //     .expect(200)
-    //     .then(({ body: { articles } }) => {
-    //       expect(articles.length).toBe(0);
-    //     });
-    // });
+    it('200: returns an empty array when provided a valid topic with no articles', () => {
+      return request(app)
+        .get("/api/articles?topic=paper")
+        .expect(200)
+        .then(({ body: { articles } }) => {
+          expect(articles.length).toBe(0);
+        });
+    });
 
-    // it('404: error on non-existent topic', () => {
-    //   return request(app)
-    //     .get('/api/articles?topic=bananas')
-    //     .expect(404)
-    //     .then(({ body: { msg } }) => {
-    //       expect(msg).toBe('Topic not found');
-    //     });
-    // });
+    it('404: error on non-existent topic', () => {
+      return request(app)
+        .get('/api/articles?topic=bananas')
+        .expect(404)
+        .then(({ body: { msg } }) => {
+          expect(msg).toBe('Topic not found');
+        });
+    });
 
     // PAGINATED ARTICLES
 
@@ -451,13 +451,13 @@ describe('/api/articles/:article_id/comments', () => {
         });
     });
 
-    it('422 TODO: 400: error when no/incomplete request body provided', () => {
+    it('400: error when no/incomplete request body provided', () => {
       return request(app)
         .post('/api/articles/2/comments')
         .send({})
-        .expect(422)
+        .expect(400)
         .then(({ body: { msg } }) => {
-          expect(msg).toBe('Unprocessable entity');
+          expect(msg).toBe('Invalid comment');
         });
     });
 
@@ -475,7 +475,6 @@ describe('/api/articles/:article_id/comments', () => {
     });
   })
 });
-
 
 describe('/api/comments/:comment_id', () => {
   describe('DELETE', () => {
@@ -599,37 +598,29 @@ describe('/api/users/:username', () => {
           expect(msg).toEqual('User not found');
         });
     });
-
-    // TODO:
-    // it ('400: error on invalid username', () => {
-    //   return request(app)
-    //     .get('/api/users/not-an-id')
-    //     .expect(400)
-    //     .then(({ body: { msg } }) => {
-    //       expect(msg).toEqual('Bad request');
-    //     });
-    // });
   });
 });
 
 describe('/api/comments/by/:username', () => {
-  it('200: returns an array of comments by a given user', () => {
-    return request(app)
-    .get('/api/comments/by/butter_bridge')
-    .expect(200)
-    .then(({ body: { comments } }) => {
-      comments.forEach((comment) => {
-        expect(comment.author).toBe('butter_bridge');
+  describe('GET', () => {
+    it('200: returns an array of comments by a given user', () => {
+      return request(app)
+      .get('/api/comments/by/butter_bridge')
+      .expect(200)
+      .then(({ body: { comments } }) => {
+        comments.forEach((comment) => {
+          expect(comment.author).toBe('butter_bridge');
+        });
       });
     });
-  });
 
-  // it ('404: error on non-existent username', () => {
-  //   return request(app)
-  //     .get('/api/comments/by/dentednerd')
-  //     .expect(404)
-  //     .then(({ body: { msg } }) => {
-  //       expect(msg).toEqual('User not found');
-  //     });
-  // });
+    it ('404: error on non-existent username', () => {
+      return request(app)
+        .get('/api/comments/by/dentednerd')
+        .expect(404)
+        .then(({ body: { msg } }) => {
+          expect(msg).toEqual('User comments not found');
+        });
+    });
+  })
 });
