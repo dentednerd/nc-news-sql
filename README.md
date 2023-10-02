@@ -2,28 +2,28 @@
 
 A RESTful API with a PostgreSQL database.
 
-[http://nc-news-sql-dentednerd.herokuapp.com/api](http://nc-news-sql-dentednerd.herokuapp.com/api)
-
 ## Requirements
 
-- Node v14.17.4: [download](https://nodejs.org/en/)
-- PostgreSQL v13.3: `brew install postgresql`
-- Heroku CLI: `brew tap heroku/brew && brew install heroku`
+- Node v18.17.1: [download](https://nodejs.org/en/)
+- PostgreSQL v13.3: [download](https://www.postgresql.org/download/)
+- Docker 24.0.6: [download](https://www.docker.com/)
 
 ## Installation
 
 ```sh
 git clone https://github.com/dentednerd/nc-news-sql-dentednerd.git
 cd nc-news-sql-dentednerd
-npm install
-echo PGDATABASE=nc_news_test > .env.test
-echo PGDATABASE=nc_news > .env.development
+docker build . -t nc-news
+docker compose up
+docker exec -ti news-server bash
+npm run seed
+exit
 ```
 
 ## Usage
 
 ```sh
-npm run setup-dbs
+npm run setup-dbs # if not running in Docker
 npm run seed
 npm start # runs on port 9090 by default
 ```
@@ -37,15 +37,11 @@ npm t # jest --verbose
 ## Deployment
 
 ```sh
-# to push to Github:
 git push origin main
-
-# to deploy to Heroku:
-# ensure that heroku remote exists
-git remote -v
-
-# if no heroku remote:
-git remote add heroku https://git.heroku.com/nc-news-sql-dentednerd.git
-npm run seed:prod # on first deploy only
-git push heroku main
 ```
+
+## to do
+
+- `docker exec -ti news-server bash` then `npm run seed` to seed, woohoo
+- `docker compose down -v` to destroy the PG volume
+- use EJS to create views for docs

@@ -4,5 +4,5 @@ const { PORT = 9090 } = process.env;
 
 app.listen(PORT, (err) => {
   if (err) throw err;
-  console.log(`nc-news-sql-dentednerd listening on ${PORT}...`);
+  console.log(`Server listening on ${PORT}...`);
 });

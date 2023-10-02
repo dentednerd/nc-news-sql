@@ -1,26 +1,27 @@
 {
-  "name": "nc-news-sql-dentednerd",
+  "name": "nc-news-sql",
   "version": "1.0.0",
-  "description": "nc-news-sql-dentednerd",
+  "description": "nc-news-sql",
   "main": "index.js",
   "scripts": {
     "setup-dbs": "psql -f ./db/setup.sql",
     "seed": "node ./db/seeds/run-seed.js",
     "test": "jest --verbose",
     "start": "node listen.js",
-    "seed:prod": "NODE_ENV=production DATABASE_URL=$(heroku config:get DATABASE_URL -a nc-news-sql-dentednerd) npm run seed"
+    "seed:prod": "NODE_ENV=production npm run seed",
+    "rebuild": "docker compose down -v && docker image prune --force --filter='label=nc-news' && docker build . -t nc-news && docker compose up"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/dentednerd/nc-news-sql-dentednerd.git"
+    "url": "git+https://github.com/dentednerd/nc-news-sql.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/dentednerd/nc-news-sql-dentednerd/issues"
+    "url": "https://github.com/dentednerd/nc-news-sql/issues"
   },
-  "homepage": "https://github.com/dentednerd/nc-news-sql-dentednerd#readme",
+  "homepage": "https://github.com/dentednerd/nc-news-sql#readme",
   "dependencies": {
     "cors": "^2.8.5",
     "dotenv": "^10.0.0",
