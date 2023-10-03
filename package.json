@@ -6,10 +6,13 @@
   "scripts": {
     "setup-dbs": "psql -f ./db/setup.sql",
     "seed": "node ./db/seeds/run-seed.js",
-    "test": "jest --verbose",
+    "seed:prod": "flyctl ssh console -C \"npm run seed\"",
+    "deploy": "fly deploy",
     "start": "node listen.js",
-    "seed:prod": "NODE_ENV=production npm run seed",
-    "rebuild": "docker compose down -v && docker image prune --force --filter='label=nc-news' && docker build . -t nc-news && docker compose up"
+    "test": "jest --verbose",
+    "docker:build": "docker build . -t dentednerd/ncnews-api && docker compose up",
+    "docker:rebuild": "docker compose down -v && docker image prune --force --filter='label=dentednerd/ncnews-api' && docker build . -t dentednerd/ncnews-api && docker compose up",
+    "docker:seed": "docker exec -it news-server -c \"npm run seed\""
   },
   "repository": {
     "type": "git",

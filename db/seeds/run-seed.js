@@ -4,7 +4,11 @@ const db = require('../connection.js');
 
 const runSeed = () => {
   console.log("About to start seeding...");
-  return seed(devData).then(() => db.end());
+  console.log(process.env.DATABASE_URL || process.env.PGDATABASE);
+  return seed(devData).then(() => {
+    console.log("Seeding complete!");
+    db.end();
+  });
 };
 
 runSeed();

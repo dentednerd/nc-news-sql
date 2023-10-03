@@ -12,14 +12,15 @@ services:
       - db
     environment:
       NODE_ENV: "production"
-      PGUSER: "dentednerd"
-      PGDATABASE: "nc_news"
-      PGPASSWORD: "password"
       DATABASE_URL: "postgres://db:5432"
+      PGUSER: "dentednerd"
+      PGPASSWORD: "password"
+      PGDATABASE: "nc_news"
 
   db:
-    container_name: postgres-db
+    container_name: news-postgres
     image: "postgres"
+    restart: always
     ports:
       - 5432:5432
     environment:
