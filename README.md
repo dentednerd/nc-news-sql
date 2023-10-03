@@ -2,6 +2,8 @@
 
 A RESTful API with a PostgreSQL database.
 
+[https://nc-news-finale.fly.dev/api](https://nc-news-finale.fly.dev/api)
+
 ## Requirements
 
 - Node v18.17.1: [download](https://nodejs.org/en/)
@@ -11,22 +13,13 @@ A RESTful API with a PostgreSQL database.
 ## Installation
 
 ```sh
-git clone https://github.com/dentednerd/nc-news-sql-dentednerd.git
-cd nc-news-sql-dentednerd
-docker build . -t nc-news
-docker compose up
-docker exec -ti news-server bash
-npm run seed
-exit
+git clone https://github.com/dentednerd/nc-news-sql.git
+cd nc-news-sql
+npm run docker:build
+npm run docker:seed
 ```
 
-## Usage
-
-```sh
-npm run setup-dbs # if not running in Docker
-npm run seed
-npm start # runs on port 9090 by default
-```
+Dev environment will be available on [localhost:9090](http://localhost:9090).
 
 ## Testing
 
@@ -37,11 +30,11 @@ npm t # jest --verbose
 ## Deployment
 
 ```sh
-git push origin main
+# first time:
+flyctl launch
+npm run deploy
+npm run seed:prod
+
+# subsequently:
+npm run deploy
 ```
-
-## to do
-
-- `docker exec -ti news-server bash` then `npm run seed` to seed, woohoo
-- `docker compose down -v` to destroy the PG volume
-- use EJS to create views for docs
