@@ -1,0 +1,109 @@
+<meta charset="UTF-8">
+<title>nc-news-finale API</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Merriweather&family=Zilla+Slab:wght@500;700&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --colors-darkBlue: #354262;
+    --colors-blue: #667295;
+    --colors-lightBlue: #E5F0FF;
+    --colors-gold: #D6A419;
+    --colors-grey: hsl(0, 0%, 75%);
+    --shadows-default: 0 0 0.25rem var(--colors-darkBlue);
+    --shadows-wide: 0 0 0.5rem var(--colors-darkBlue);
+    --space-default: 1rem;
+    background-color: black;
+  }
+
+  *,
+  *:before,
+  *:after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: "Merriweather", serif;
+    font-size: 16px;
+    background-color: white;
+    color: var(--colors-darkBlue);
+    min-height: 100vh;
+  }
+
+  a {
+    color: var(--colors-gold);
+    text-decoration: none;
+  }
+
+  main {
+    padding: 2rem 0;
+  }
+
+  header {
+    background: -webkit-linear-gradient(top, black 0%,var(--colors-blue) 6%, var(--colors-darkBlue) 100%), -webkit-radial-gradient(center bottom, var(--colors-blue) 0%, black 70%);
+    color: white;
+    height: auto;
+    padding: var(--space-default) 0 0;
+    box-shadow: 0 0 0.5rem 0.25rem var(--colors-blue);
+  }
+
+  .wrapper {
+    max-width: 800px;
+    margin-inline: auto;
+    padding-inline: 1rem;
+  }
+
+  h1 {
+    font-family: "Zilla Slab", serif;
+    font-size: 5rem;
+    text-align: right;
+  }
+
+  h2,
+  h3 {
+    font-family: "Zilla Slab", serif;
+  }
+
+  p {
+    margin-bottom: 1.2rem;
+  }
+
+  .blue {
+    background-color: var(--colors-lightBlue);
+    padding: var(--space-default);
+    margin-bottom: var(--space-default);
+    border-top: solid 1px var(--colors-blue);
+    border-bottom: solid 1px var(--colors-blue);
+  }
+
+  p:last-child {
+    margin-bottom: 0;
+  }
+
+  table {
+    font-family: "Zilla Slab", serif;
+  }
+
+  td {
+    padding: 0.5rem;
+  }
+
+  tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+
+  footer {
+    background: -webkit-linear-gradient(top, var(--colors-darkBlue) 0%, var(--colors-blue) 94%, black 100%), -webkit-radial-gradient(center top, black 0%, var(--colors-blue) 70%);
+    color: white;
+    padding: var(--space-default);
+    box-shadow: 0 0 0.5rem 0.25rem var(--colors-blue);
+  }
+
+  footer a {
+    color: white;
+  }
+</style>

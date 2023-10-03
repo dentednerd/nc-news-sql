@@ -16,6 +16,8 @@ A RESTful API with a PostgreSQL database.
 git clone https://github.com/dentednerd/nc-news-sql.git
 cd nc-news-sql
 npm run docker:build
+
+# in separate terminal:
 npm run docker:seed
 ```
 

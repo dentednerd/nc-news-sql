@@ -8,11 +8,12 @@
     "seed": "node ./db/seeds/run-seed.js",
     "seed:prod": "flyctl ssh console -C \"npm run seed\"",
     "deploy": "fly deploy",
+    "dev": "nodemon --watch . listen.js",
     "start": "node listen.js",
     "test": "jest --verbose",
     "docker:build": "docker build . -t dentednerd/ncnews-api && docker compose up",
     "docker:rebuild": "docker compose down -v && docker image prune --force --filter='label=dentednerd/ncnews-api' && docker build . -t dentednerd/ncnews-api && docker compose up",
-    "docker:seed": "docker exec -it news-server -c \"npm run seed\""
+    "docker:seed": "docker exec -it news-server bash -c \"npm run seed\""
   },
   "repository": {
     "type": "git",
@@ -28,7 +29,9 @@
   "dependencies": {
     "cors": "^2.8.5",
     "dotenv": "^10.0.0",
+    "ejs": "^3.1.9",
     "express": "^4.17.1",
+    "nodemon": "^3.0.1",
     "pg": "^8.7.1",
     "pg-format": "^1.0.4"
   },
